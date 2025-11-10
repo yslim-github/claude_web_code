@@ -359,3 +359,230 @@
   transition-duration: 0.3s;
   transition-timing-function: ease;
 }
+
+/* New Feature Styles */
+
+/* TodoInput with options */
+.todo-input-form {
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.todo-input-main {
+  width: 100%;
+}
+
+.todo-input-options {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.todo-priority-select,
+.todo-date-input {
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--border-color);
+  border-radius: 8px;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.todo-priority-select:focus,
+.todo-date-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(100, 108, 255, 0.1);
+}
+
+.todo-priority-select:hover,
+.todo-date-input:hover {
+  border-color: var(--border-hover);
+}
+
+/* Search */
+.todo-controls {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.todo-search {
+  flex: 1;
+  min-width: 200px;
+}
+
+.todo-search-input {
+  width: 100%;
+}
+
+/* Priority Badges */
+.priority-badge {
+  display: inline-block;
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.priority-low {
+  background: linear-gradient(135deg, #10b981, #059669);
+  color: white;
+}
+
+.priority-medium {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+  color: white;
+}
+
+.priority-high {
+  background: linear-gradient(135deg, #ef4444, #dc2626);
+  color: white;
+}
+
+/* Todo Details */
+.todo-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+.todo-meta {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.todo-due-date {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  padding: 0.25rem 0.5rem;
+  background: var(--bg-tertiary);
+  border-radius: 6px;
+}
+
+.todo-due-date.overdue {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  color: #991b1b;
+  font-weight: 600;
+}
+
+.todo-item.overdue {
+  border-color: #ef4444;
+  background: rgba(239, 68, 68, 0.05);
+}
+
+/* Todo Actions */
+.todo-actions {
+  display: flex;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.todo-edit-button,
+.todo-delete-button {
+  padding: 0.5rem 1rem;
+  font-size: 0.85rem;
+}
+
+/* Edit Form */
+.todo-item.editing {
+  background: var(--bg-tertiary);
+  padding: 1.5rem;
+}
+
+.todo-edit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+}
+
+.todo-edit-input {
+  width: 100%;
+}
+
+.todo-edit-options {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.todo-edit-actions {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: flex-end;
+}
+
+.todo-save-button,
+.todo-cancel-button {
+  padding: 0.625rem 1.25rem;
+  font-size: 0.9rem;
+}
+
+/* Stats enhancements */
+.stat-priority {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  color: #92400e;
+}
+
+.stat-overdue {
+  background: linear-gradient(135deg, #fee2e2, #fecaca);
+  color: #991b1b;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .todo-input-options {
+    flex-direction: column;
+  }
+
+  .todo-priority-select,
+  .todo-date-input {
+    width: 100%;
+  }
+
+  .todo-controls {
+    flex-direction: column;
+  }
+
+  .todo-search {
+    width: 100%;
+  }
+
+  .todo-actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+
+  .todo-edit-button,
+  .todo-delete-button {
+    flex: 1;
+  }
+
+  .todo-details {
+    width: 100%;
+  }
+
+  .todo-edit-options {
+    flex-direction: column;
+  }
+
+  .todo-edit-actions {
+    flex-direction: column;
+  }
+
+  .todo-save-button,
+  .todo-cancel-button {
+    width: 100%;
+  }
+}
