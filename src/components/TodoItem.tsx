@@ -1,4 +1,6 @@
 import type { Todo } from '../types/todo';
+import Button from './common/Button';
+import Checkbox from './common/Checkbox';
 
 interface TodoItemProps {
   todo: Todo;
@@ -10,20 +12,20 @@ export default function TodoItem({ todo, onToggle, onDelete }: TodoItemProps) {
   return (
     <li className={`todo-item ${todo.completed ? 'completed' : ''}`}>
       <div className="todo-content">
-        <input
-          type="checkbox"
+        <Checkbox
           checked={todo.completed}
           onChange={() => onToggle(todo.id)}
           className="todo-checkbox"
         />
         <span className="todo-text">{todo.text}</span>
       </div>
-      <button
+      <Button
         onClick={() => onDelete(todo.id)}
+        variant="danger"
         className="todo-delete-button"
       >
         삭제
-      </button>
+      </Button>
     </li>
   );
 }

@@ -43,34 +43,60 @@ npm run preview
 
 ```
 src/
-├── main.tsx          # 애플리케이션 진입점
-├── App.tsx           # 메인 App 컴포넌트
-├── App.css           # App 스타일
-├── index.css         # 전역 스타일
-└── assets/           # 정적 리소스 (이미지, 아이콘 등)
+├── main.tsx                    # 애플리케이션 진입점
+├── App.tsx                     # 메인 App 컴포넌트 (커스텀 훅 사용)
+├── App.css                     # 전역 스타일
+├── index.css                   # 기본 스타일
+├── types/
+│   └── todo.ts                 # TypeScript 타입 정의
+├── hooks/
+│   ├── useLocalStorage.ts      # LocalStorage 관리 훅
+│   ├── useTodos.ts             # Todo 상태 관리 훅
+│   └── useFilter.ts            # 필터링 로직 훅
+├── components/
+│   ├── common/                 # 재사용 가능한 공통 컴포넌트
+│   │   ├── Button.tsx          # 버튼 컴포넌트 (variant: primary/danger/secondary)
+│   │   ├── Input.tsx           # 입력 필드 컴포넌트
+│   │   └── Checkbox.tsx        # 체크박스 컴포넌트
+│   ├── TodoInput.tsx           # Todo 입력 폼
+│   ├── TodoItem.tsx            # 개별 Todo 아이템
+│   ├── TodoList.tsx            # Todo 목록 컨테이너
+│   └── TodoFilter.tsx          # 필터 버튼
+└── assets/                     # 정적 리소스
 
-public/               # 퍼블릭 정적 파일
+public/                         # 퍼블릭 정적 파일
 ```
 
 ## Architecture Guidelines
 
 ### Component Structure
-- 컴포넌트는 `src/components/` 디렉토리에 작성
-- 각 컴포넌트는 독립적인 디렉토리 또는 파일로 관리
+- **공통 컴포넌트**: `src/components/common/`에 재사용 가능한 UI 컴포넌트 작성
+- **기능 컴포넌트**: `src/components/`에 도메인 특화 컴포넌트 작성
 - TypeScript 인터페이스를 사용하여 props 타입 정의
+- 각 컴포넌트는 단일 책임 원칙(SRP)을 따름
 
-### State Management (Todo 앱)
-Todo 앱 개발 시 고려사항:
-- **Local State**: 간단한 Todo 기능은 `useState` 사용
-- **Context API**: 여러 컴포넌트에서 Todo 상태 공유가 필요한 경우
-- **외부 라이브러리**: 복잡한 상태 관리가 필요하면 Zustand나 Redux Toolkit 고려
+### Custom Hooks Pattern
+로직을 커스텀 훅으로 분리하여 재사용성과 테스트 용이성 향상:
 
-### Todo App 기능 권장사항
-1. Todo 추가/삭제/수정
-2. Todo 완료 상태 토글
-3. 필터링 (전체/완료/미완료)
-4. LocalStorage를 활용한 데이터 영속성
-5. 반응형 디자인
+- **useLocalStorage**: LocalStorage와 상태를 자동으로 동기화
+- **useTodos**: Todo CRUD 작업 관리 (추가, 수정, 삭제, 토글)
+- **useFilter**: Todo 필터링 로직 (전체/진행중/완료)
+
+### State Management
+- **커스텀 훅**: 복잡한 상태 로직은 커스텀 훅으로 분리
+- **로컬 스토리지**: 데이터 영속성을 위해 LocalStorage 사용
+- 상태는 가능한 한 컴포넌트 트리의 하위에 배치
+
+### Common Components
+재사용 가능한 공통 컴포넌트 사용:
+- `Button`: variant prop으로 스타일 변경 (primary, danger, secondary)
+- `Input`: error prop으로 검증 오류 표시
+- `Checkbox`: 일관된 체크박스 UI
+
+### Code Organization
+- 타입 정의는 `src/types/`에 중앙 관리
+- 비즈니스 로직은 커스텀 훅으로 분리
+- UI 컴포넌트는 프레젠테이션 로직만 포함
 
 ## TypeScript Configuration
 

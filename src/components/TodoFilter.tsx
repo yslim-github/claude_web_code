@@ -1,4 +1,5 @@
 import type { FilterType } from '../types/todo';
+import Button from './common/Button';
 
 interface TodoFilterProps {
   currentFilter: FilterType;
@@ -15,13 +16,14 @@ export default function TodoFilter({ currentFilter, onFilterChange }: TodoFilter
   return (
     <div className="todo-filter">
       {filters.map(({ type, label }) => (
-        <button
+        <Button
           key={type}
           onClick={() => onFilterChange(type)}
+          variant="secondary"
           className={`filter-button ${currentFilter === type ? 'active' : ''}`}
         >
           {label}
-        </button>
+        </Button>
       ))}
     </div>
   );
