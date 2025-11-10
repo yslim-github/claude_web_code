@@ -1,42 +1,221 @@
-#root {
-  max-width: 1280px;
+.app {
+  width: 100%;
+  max-width: 600px;
   margin: 0 auto;
+  padding: 2rem 1rem;
+}
+
+.container {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 16px;
   padding: 2rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.app-title {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: #646cff;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* TodoInput */
+.todo-input-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+.todo-input {
+  flex: 1;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid rgba(100, 108, 255, 0.3);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  color: inherit;
+  transition: border-color 0.25s;
+}
+
+.todo-input:focus {
+  outline: none;
+  border-color: #646cff;
+}
+
+.todo-add-button {
+  padding: 0.75rem 1.5rem;
+  background-color: #646cff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.25s;
+}
+
+.todo-add-button:hover {
+  background-color: #535bf2;
+}
+
+/* TodoFilter */
+.todo-filter {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  justify-content: center;
+}
+
+.filter-button {
+  padding: 0.5rem 1.25rem;
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(100, 108, 255, 0.3);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+
+.filter-button:hover {
+  background-color: rgba(100, 108, 255, 0.1);
+  border-color: #646cff;
+}
+
+.filter-button.active {
+  background-color: #646cff;
+  color: white;
+  border-color: #646cff;
+}
+
+/* TodoList */
+.todo-list {
+  list-style: none;
+  margin-bottom: 1.5rem;
+}
+
+.empty-message {
+  text-align: center;
+  color: rgba(255, 255, 255, 0.5);
+  padding: 2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* TodoItem */
+.todo-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(100, 108, 255, 0.2);
+  border-radius: 8px;
+  transition: all 0.25s;
+}
+
+.todo-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(100, 108, 255, 0.4);
+}
+
+.todo-item.completed {
+  opacity: 0.6;
+}
+
+.todo-content {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.todo-checkbox {
+  width: 1.25rem;
+  height: 1.25rem;
+  cursor: pointer;
+  accent-color: #646cff;
+}
+
+.todo-text {
+  text-align: left;
+  word-break: break-word;
+}
+
+.todo-item.completed .todo-text {
+  text-decoration: line-through;
+}
+
+.todo-delete-button {
+  padding: 0.5rem 1rem;
+  background-color: #ff4757;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.25s;
+}
+
+.todo-delete-button:hover {
+  background-color: #ff3838;
+}
+
+/* Stats */
+.todo-stats {
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+  background: rgba(100, 108, 255, 0.1);
+  border-radius: 8px;
+  font-size: 0.9rem;
+}
+
+.todo-stats span {
+  font-weight: 500;
+}
+
+/* Light mode */
+@media (prefers-color-scheme: light) {
+  .container {
+    background: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
   }
-  to {
-    transform: rotate(360deg);
+
+  .todo-input {
+    background: white;
+  }
+
+  .todo-item {
+    background: #f9f9f9;
+  }
+
+  .todo-item:hover {
+    background: #f0f0f0;
+  }
+
+  .empty-message {
+    color: rgba(0, 0, 0, 0.5);
   }
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
+/* Responsive */
+@media (max-width: 640px) {
+  .app {
+    padding: 1rem 0.5rem;
   }
-}
 
-.card {
-  padding: 2em;
-}
+  .container {
+    padding: 1.5rem 1rem;
+  }
 
-.read-the-docs {
-  color: #888;
+  .app-title {
+    font-size: 2rem;
+  }
+
+  .todo-input-form {
+    flex-direction: column;
+  }
+
+  .todo-stats {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
 }
